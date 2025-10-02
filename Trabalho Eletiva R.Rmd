@@ -5,10 +5,10 @@ author: "Luiz Fernando Batista"
 date: "2025-10-02"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+knitr::opts_chunk$set(echo = TRUE, fig.show = 'hold', fig.width = 8, fig.height = 6)
+``` 
+
 
 # ------------------------------------------------------------
 # 1. Carregar pacotes
@@ -239,7 +239,105 @@ ggplot(elasticidade_df, aes(x = var_icc, y = var_receita, color = categoria)) +
 # variaram menos com o ICC e, em períodos de baixa confiança, o consumo desses produtos não caiu tanto quanto o consumo 
 # dos **não essenciais**, que apresentaram maior volatilidade.
 
-# Uso de IA: Utilizei o Chat GPT para dúvidas com o código e otimização do código.
+
+
+## Como Reproduzir
+
+
+# Para reproduzir esta análise, siga os passos abaixo.
+
+# 1. **Instalar e Carregar os Pacotes Necessários**
+
+# A primeira etapa é garantir que você tenha todos os pacotes necessários instalados no R. 
+# Os pacotes usados nesta análise são:
+
+# - **tidyverse**: Conjunto de pacotes para manipulação e visualização de dados.
+# - **readxl**: Pacote para ler arquivos Excel.
+# - **janitor**: Utilizado para limpar e formatar os dados.
+# - **lubridate**: Pacote para manipulação de datas.
+# - **stringr**: Utilizado para manipulação de strings.
+# - **scales**: Para ajustes em gráficos e escalas.
+
+# Você pode instalar todos esses pacotes de uma vez no R com o seguinte comando:
+
+# install.packages(c("tidyverse", "readxl", "janitor", "lubridate", "stringr", "scales"))
+
+# Após instalar os pacotes, basta carregá-los com o comando `library()`.
+
+# 2. **Obter os Dados**
+
+# Nesta análise, foram utilizadas duas bases de dados:
+
+# - **PMC (Pesquisa Mensal do Comércio)**: Você pode obter os dados diretamente no site do IBGE ou a partir de um arquivo Excel já disponível.
+# - **ICC (Índice de Confiança do Consumidor)**: Os dados do ICC podem ser baixados diretamente do portal da FGV.
+
+# Certifique-se de ter os arquivos de dados em seu computador e ajuste o caminho do arquivo conforme a localização em sua máquina.
+
+# 3. **Carregar e Limpar os Dados**
+
+# Após obter os arquivos, você precisa carregá-los no R. As bases de dados **PMC** e **ICC** são carregadas com a função `read_excel()`, do pacote **readxl**. 
+# Durante o carregamento, os dados precisam ser limpos e preparados para análise. Isso inclui a renomeação de colunas, conversão de datas e a eliminação de valores nulos ou inválidos.
+
+# Além disso, a base **PMC** passa por um processo de transformação para reorganizar os dados em um formato adequado para análise. 
+# Uma vez limpos, as bases de dados são integradas, com o **ICC** sendo combinado à base **PMC** usando a função `left_join()`.
+
+# 4. **Classificação dos Dados: Essenciais vs. Não Essenciais**
+
+# Após integrar os dados, a próxima etapa é a classificação das atividades econômicas em **essenciais** e **não essenciais**. 
+# Para isso, foram selecionadas algumas categorias da **Pesquisa Mensal do Comércio (PMC)** que são consideradas essenciais, como supermercados e farmácias, e outras que são consideradas não essenciais.
+
+# 5. **Gerar os Gráficos**
+
+# Com os dados preparados, você pode gerar os gráficos. Dois gráficos principais foram criados para visualizar os resultados da análise:
+
+# - **Gráfico 1: Estrutura de Consumo ao Longo do Tempo**: Este gráfico mostra a participação percentual de consumo dos produtos essenciais e não essenciais ao longo do tempo, comparando-os com o Índice de Confiança do Consumidor (ICC).
+  
+# - **Gráfico 2: Elasticidade do Consumo em Relação ao ICC**: Este gráfico analisa a relação entre as variações no ICC e as variações no consumo dos produtos essenciais e não essenciais, ou seja, como o comportamento de consumo é sensível às mudanças na confiança do consumidor.
+
+# Esses gráficos são gerados utilizando o pacote **ggplot2**, que oferece uma forma poderosa de criar visualizações no R.
+
+# 6. **Como Gerar o HTML**
+
+# Depois de rodar todo o código e gerar os gráficos, você pode gerar um arquivo HTML com os resultados utilizando a função `knit()` no RStudio. 
+# Para isso, basta clicar no botão **Knit** na interface do RStudio, e o RMarkdown gerará um arquivo HTML com os gráficos e resultados da análise.
+
+# Este arquivo HTML será uma versão interativa da análise, e você poderá visualizar os gráficos e as interpretações diretamente no seu navegador.
+
+
+## Referências
+
+
+# - **Base de Dados PMC (Pesquisa Mensal do Comércio)**: 
+#   - IBGE: https://www.ibge.gov.br/estatisticas/economicas/comercio/9094-pesquisa-mensal-do-comercio.html
+#   - Fonte de dados para análise do desempenho do comércio varejista no Brasil.
+
+# - **Base de Dados ICC (Índice de Confiança do Consumidor)**:
+#   - FGV: https://www.fgv.br/ibrep/indices-de-confianca
+#   - Fonte de dados sobre a confiança do consumidor, essencial para entender as variações no consumo.
+
+# - **Pacote `tidyverse`**: 
+#   - Documentação oficial: https://ggplot2.tidyverse.org/
+#   - Usado para manipulação de dados e visualizações.
+
+# - **Pacote `readxl`**: 
+#   - Documentação oficial: https://cran.r-project.org/web/packages/readxl/readxl.pdf
+#   - Usado para leitura de arquivos Excel.
+
+# - **Pacote `lubridate`**: 
+#   - Documentação oficial: https://cran.r-project.org/web/packages/lubridate/lubridate.pdf
+#   - Usado para manipulação de datas.
+
+# - **Utilização de IA para otimização de código**:
+#   - **ChatGPT**: Durante a análise, o ChatGPT foi utilizado para tirar dúvidas sobre otimização de código e melhor estruturação das funções.
+  
+# - **Exemplo de código para RMarkdown**: 
+#   - https://bookdown.org/yihui/rmarkdown/
+#   - Fonte de referência para a estruturação do código em RMarkdown.
+
+# - **Exemplo de visualização com `ggplot2`**: 
+#   - https://ggplot2.tidyverse.org/
+#   - Referência para a criação dos gráficos e personalização da visualização.
+
   
 ## Conclusão
   
@@ -249,5 +347,4 @@ ggplot(elasticidade_df, aes(x = var_icc, y = var_receita, color = categoria)) +
 # A elasticidade do consumo foi mais alta nos itens não essenciais, demonstrando que os consumidores ajustaram 
 # seu comportamento de compra de forma mais sensível à confiança no mercado.
   
-
   
