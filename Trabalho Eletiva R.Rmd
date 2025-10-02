@@ -239,7 +239,7 @@ ggplot(elasticidade_df, aes(x = var_icc, y = var_receita, color = categoria)) +
 # variaram menos com o ICC e, em períodos de baixa confiança, o consumo desses produtos não caiu tanto quanto o consumo 
 # dos **não essenciais**, que apresentaram maior volatilidade.
 
-#Uso de IA: Utilizei o Chat GPT para dúvidas com o código e otimização do código.
+# Uso de IA: Utilizei o Chat GPT para dúvidas com o código e otimização do código.
   
 ## Conclusão
   
@@ -249,4 +249,5 @@ ggplot(elasticidade_df, aes(x = var_icc, y = var_receita, color = categoria)) +
 # A elasticidade do consumo foi mais alta nos itens não essenciais, demonstrando que os consumidores ajustaram 
 # seu comportamento de compra de forma mais sensível à confiança no mercado.
   
+
   
