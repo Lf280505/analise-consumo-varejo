@@ -1,1 +1,48 @@
+name: Render RMarkdown to HTML
+
+on:
+  push:
+    branches:
+      - main  # Você pode alterar para a branch que deseja, caso não use a "main"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  render:
+    runs-on: ubuntu-latest  # Usa uma máquina virtual com Ubuntu para rodar o código
+
+    steps:
+      # 1. Faz checkout do código do repositório
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # 2. Instala o R
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      # 3. Instala pacotes R necessários
+      - name: Install dependencies
+        run: |
+          install.packages('rmarkdown')
+          install.packages('tidyverse')
+          install.packages('readxl')
+          install.packages('janitor')
+          install.packages('lubridate')
+          install.packages('stringr')
+          install.packages('scales')
+
+      # 4. Renderiza o arquivo RMarkdown para HTML
+      - name: Render RMarkdown
+        run: |
+          Rscript -e "rmarkdown::render('seu_arquivo.Rmd')"  # Substitua 'seu_arquivo.Rmd' pelo nome do seu arquivo .Rmd
+
+      # 5. Faz o commit e envio do arquivo HTML gerado para o repositório
+      - name: Commit HTML file
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: 'GitHub Actions'
+          author_email: 'actions@github.com'
+          message: 'Gerando HTML do RMarkdown'
+          add: 'seu_arquivo.html'  # Substitua pelo nome do seu arquivo HTML gerado
 
