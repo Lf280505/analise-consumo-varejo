@@ -7,7 +7,7 @@ output: html_document
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.show = 'hold', fig.width = 8, fig.height = 6)
-``` 
+
 
 
 # ------------------------------------------------------------
@@ -347,4 +347,5 @@ ggplot(elasticidade_df, aes(x = var_icc, y = var_receita, color = categoria)) +
 # A elasticidade do consumo foi mais alta nos itens não essenciais, demonstrando que os consumidores ajustaram 
 # seu comportamento de compra de forma mais sensível à confiança no mercado.
   
+```
   
